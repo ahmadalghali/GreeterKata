@@ -17,8 +17,6 @@ public class Greeter {
     public String greet(String input) {
         String term = "Hello";
 
-        String sanitizedInput = sanitize(input);
-
         if (localTime.isAfter(LocalTime.of(5, 59))
                 && localTime.isBefore(LocalTime.of(12, 1))) {
             term = "Good morning";
@@ -30,14 +28,22 @@ public class Greeter {
             term = "Good night";
         }
 
-        String greeting = term + " " + sanitizedInput;
+        String greeting = term + " " + sanitize(input);
 
         System.out.println(greeting);
         return greeting;
     }
 
     private String sanitize(String input) {
+        if (input == null) {
+            throw new IllegalArgumentException("Name cannot be null.");
+        }
+
         String trimmedInput = input.trim();
+
+        if (trimmedInput.isBlank() || trimmedInput.isEmpty()) {
+            throw new IllegalArgumentException("Name cannot be empty.");
+        }
 
         return trimmedInput.substring(0, 1).toUpperCase() + trimmedInput.substring(1, trimmedInput.length());
     }

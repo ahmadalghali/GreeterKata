@@ -6,6 +6,7 @@ import org.junit.jupiter.params.provider.CsvSource;
 import java.time.LocalTime;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class GreeterTest {
 
@@ -157,6 +158,28 @@ public class GreeterTest {
 //        Then
         String expected = "Hello Peter";
         assertEquals(expected, result);
+    }
+
+    @Test
+    void shouldThrowExceptionIfEmptyInput() {
+        Greeter greeter = new Greeter(LocalTime.of(15, 0));
+
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
+            greeter.greet("");
+        });
+
+        assertEquals("Name cannot be empty.", exception.getMessage());
+    }
+
+    @Test
+    void shouldThrowExceptionIfNullInput() {
+        Greeter greeter = new Greeter(LocalTime.of(15, 0));
+
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
+            greeter.greet(null);
+        });
+
+        assertEquals("Name cannot be null.", exception.getMessage());
     }
 
 }
