@@ -12,7 +12,7 @@ public class GreeterTest {
     @Test
     void shouldReturnHelloPlusInput() {
 //        Given
-        Greeter greeter = new Greeter();
+        Greeter greeter = new Greeter(LocalTime.of(15, 0));
         String name = "peter";
 
 //        When
@@ -26,7 +26,7 @@ public class GreeterTest {
     @Test
     void shouldTrimInput() {
 //        Given
-        Greeter greeter = new Greeter();
+        Greeter greeter = new Greeter(LocalTime.of(15, 0));
         String name = "   peter  ";
 
 //        When
@@ -40,7 +40,7 @@ public class GreeterTest {
     @Test
     void shouldCapitalizeFirstLetter() {
         //        Given
-        Greeter greeter = new Greeter();
+        Greeter greeter = new Greeter(LocalTime.of(15, 0));
         String name = "peter";
 
 //        When
@@ -127,6 +127,35 @@ public class GreeterTest {
 
 //        Then
         String expected = "Good night Peter";
+        assertEquals(expected, result);
+    }
+
+
+    @ParameterizedTest
+    @CsvSource({
+            "12, 1",
+            "12, 30",
+            "13, 0",
+            "13, 45",
+            "14, 10",
+            "14, 55",
+            "15, 20",
+            "15, 40",
+            "16, 0",
+            "16, 30",
+            "17, 15",
+            "17, 59"
+    })
+    void shouldReturnHelloPlusInputWhenIsAnyOtherTime(int hour, int minute) {
+//        Given
+        Greeter greeter = new Greeter(LocalTime.of(hour, minute));
+        String name = "peter";
+
+//        When
+        String result = greeter.greet(name);
+
+//        Then
+        String expected = "Hello Peter";
         assertEquals(expected, result);
     }
 
