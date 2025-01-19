@@ -33,6 +33,20 @@ public class GreeterTest {
         assertEquals(expected, result);
     }
 
+    @Test
+    void shouldCapitalizeFirstLetter() {
+        //        Given
+        Greeter greeter = new Greeter();
+        String name = "peter";
+
+//        When
+        String result = greeter.greet(name);
+
+//        Then
+        String expected = "Hello Peter";
+        assertEquals(expected, result);
+    }
+
 
 
 }
