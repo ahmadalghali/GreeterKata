@@ -16,10 +16,14 @@ public class Greeter {
 
     public String greet(String input) {
         var hour = this.localTime.getHour();
+        String sanitizedInput = sanitize(input);
         if (hour >= 6 && hour <= 12) {
-            return "Good morning " + sanitize(input);
+            return "Good morning " + sanitizedInput;
+        } else if (hour >= 18 && hour <= 22) {
+            return "Good evening " + sanitizedInput;
+        } else {
+            return "Hello " + sanitizedInput;
         }
-        return "Hello " + sanitize(input);
     }
 
     private String sanitize(String input) {
