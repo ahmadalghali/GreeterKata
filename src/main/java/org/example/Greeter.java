@@ -3,9 +3,7 @@ package org.example;
 public class Greeter {
 
     public String greet(String input) {
-        String greeting = "Hello " + sanitize(input);
-        System.out.println(greeting);
-        return greeting;
+        return "Hello " + sanitize(input);
     }
 
     private String sanitize(String input) {
