@@ -18,4 +18,21 @@ public class GreeterTest {
         String expected = "Hello peter";
         assertEquals(expected, result);
     }
+
+    @Test
+    void shouldTrimInput() {
+//        Given
+        Greeter greeter = new Greeter();
+        String name = "   peter  ";
+
+//        When
+        String result = greeter.greet(name);
+
+//        Then
+        String expected = "Hello peter";
+        assertEquals(expected, result);
+    }
+
+
+
 }
