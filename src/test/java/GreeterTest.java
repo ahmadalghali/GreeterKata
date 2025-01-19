@@ -74,7 +74,6 @@ public class GreeterTest {
         assertEquals(expected, result);
     }
 
-
     @ParameterizedTest
     @CsvSource({
             "18, 0",
@@ -98,6 +97,36 @@ public class GreeterTest {
 
 //        Then
         String expected = "Good evening Peter";
+        assertEquals(expected, result);
+    }
+
+
+    @ParameterizedTest
+    @CsvSource({
+            "22, 1",
+            "22, 30",
+            "23, 15",
+            "23, 59",
+            "0, 0",
+            "0, 45",
+            "1, 20",
+            "2, 10",
+            "3, 30",
+            "4, 50",
+            "5, 5",
+            "5, 58",
+            "5, 59",
+    })
+    void shouldReturnGoodEveningWhenTimeIs22_01_To_5_59(int hour, int minute) {
+//        Given
+        Greeter greeter = new Greeter(LocalTime.of(hour, minute));
+        String name = "peter";
+
+//        When
+        String result = greeter.greet(name);
+
+//        Then
+        String expected = "Good night Peter";
         assertEquals(expected, result);
     }
 

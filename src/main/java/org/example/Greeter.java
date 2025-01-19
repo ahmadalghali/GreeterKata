@@ -15,15 +15,22 @@ public class Greeter {
     }
 
     public String greet(String input) {
-        var hour = this.localTime.getHour();
+        String greeting = "Hello";
+
         String sanitizedInput = sanitize(input);
-        if (hour >= 6 && hour <= 12) {
-            return "Good morning " + sanitizedInput;
-        } else if (hour >= 18 && hour <= 22) {
-            return "Good evening " + sanitizedInput;
-        } else {
-            return "Hello " + sanitizedInput;
+
+        if (localTime.isAfter(LocalTime.of(5, 59))
+                && localTime.isBefore(LocalTime.of(12, 1))) {
+            greeting = "Good morning";
+        } else if (localTime.isAfter(LocalTime.of(17, 59))
+                && localTime.isBefore(LocalTime.of(22, 1))) {
+            greeting = "Good evening";
+        } else if (!localTime.isBefore(LocalTime.of(22, 0))
+                || !localTime.isAfter(LocalTime.of(6, 0))) {
+            greeting = "Good night";
         }
+
+        return greeting + " " + sanitizedInput;
     }
 
     private String sanitize(String input) {
