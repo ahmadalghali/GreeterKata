@@ -15,7 +15,7 @@ public class GreeterTest {
         String result = greeter.greet(name);
 
 //        Then
-        String expected = "Hello peter";
+        String expected = "Hello Peter";
         assertEquals(expected, result);
     }
 
@@ -29,7 +29,7 @@ public class GreeterTest {
         String result = greeter.greet(name);
 
 //        Then
-        String expected = "Hello peter";
+        String expected = "Hello Peter";
         assertEquals(expected, result);
     }
 
