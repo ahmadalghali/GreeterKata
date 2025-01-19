@@ -45,6 +45,8 @@ public class Greeter {
             throw new IllegalArgumentException("Name cannot be empty.");
         }
 
+//        TODO:// Add input validation here: No special chars, allow ( ) , . '
+
         return trimmedInput.substring(0, 1).toUpperCase() + trimmedInput.substring(1, trimmedInput.length());
     }
 }

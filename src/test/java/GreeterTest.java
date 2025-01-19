@@ -1,7 +1,9 @@
 import org.example.Greeter;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import java.time.LocalTime;
 
@@ -180,6 +182,19 @@ public class GreeterTest {
         });
 
         assertEquals("Name cannot be null.", exception.getMessage());
+    }
+
+    @Disabled // TODO
+    @ParameterizedTest
+    @ValueSource(strings = { "john1", "43532", "max!", "sarah%£$"})
+    void shouldThrowExceptionIfInputContainsInvalidCharacters(String invalidInput) {
+        Greeter greeter = new Greeter(LocalTime.of(15, 0));
+
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
+            greeter.greet(invalidInput);
+        });
+
+        assertEquals("Name must not contain invalid characters.", exception.getMessage());
     }
 
 }
